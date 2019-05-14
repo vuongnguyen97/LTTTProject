@@ -1,0 +1,586 @@
+﻿-- phpMyAdmin SQL Dump
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
+--
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th6 07, 2018 lúc 11:52 AM
+-- Phiên bản máy phục vụ: 10.1.28-MariaDB
+-- Phiên bản PHP: 5.6.32
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Cơ sở dữ liệu: `tvbox`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `anhslide`
+--
+
+CREATE TABLE `anhslide` (
+  `id` int(11) NOT NULL,
+  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `anhslide` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `anh_thumb` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `link` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `anhslide`
+--
+
+INSERT INTO `anhslide` (`id`, `title`, `anhslide`, `anh_thumb`, `link`, `status`) VALUES
+(43, 'tung', 'upload/1.png', NULL, '', 1),
+(44, 'tung', 'upload/12.1.png', NULL, '', 0),
+(45, 'ssdssds', 'upload/32845674_1615336935182611_1391643294521360384_n.jpg', NULL, '', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `baiviet`
+--
+
+CREATE TABLE `baiviet` (
+  `id` int(11) NOT NULL,
+  `danhmucbaiviet` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `tomtat` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `noidung` text COLLATE utf8_unicode_ci NOT NULL,
+  `hinhanh` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `anh_thumb` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `view` int(10) NOT NULL,
+  `ngaydang` date NOT NULL,
+  `giodang` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `orthernum` int(10) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `baiviet`
+--
+
+INSERT INTO `baiviet` (`id`, `danhmucbaiviet`, `title`, `tomtat`, `noidung`, `hinhanh`, `anh_thumb`, `view`, `ngaydang`, `giodang`, `orthernum`, `status`) VALUES
+(40, '3', 'nguyen', 'khanh', '<p>tung</p>\r\n', 'upload/avatar fb.jpg', NULL, 0, '2018-04-24', '9:35 PM', 0, 1),
+(41, '1', 'fefef', 'èeffef', '<p>&ecirc;fefe</p>\r\n', 'upload/windows-spotlight-20.jpg', NULL, 0, '2018-05-14', '9:15 PM', 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chitietdonhang`
+--
+
+CREATE TABLE `chitietdonhang` (
+  `id` int(11) NOT NULL,
+  `order_id` int(10) NOT NULL,
+  `product_id` int(10) NOT NULL,
+  `price` int(10) NOT NULL,
+  `sl` int(10) NOT NULL,
+  `tongtien` int(10) NOT NULL,
+  `date_creat` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `danhmucbaiviet`
+--
+
+CREATE TABLE `danhmucbaiviet` (
+  `id` int(11) NOT NULL,
+  `danhmucbaiviet` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `parent_id` int(50) NOT NULL,
+  `menu` int(1) NOT NULL,
+  `home` int(1) NOT NULL,
+  `orthernum` int(10) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `danhmucbaiviet`
+--
+
+INSERT INTO `danhmucbaiviet` (`id`, `danhmucbaiviet`, `parent_id`, `menu`, `home`, `orthernum`, `status`) VALUES
+(1, 'mibox', 0, 1, 1, 0, 1),
+(2, 'vibox 2018', 0, 1, 1, 0, 1),
+(3, 'fpt play box', 1, 1, 1, 0, 1),
+(4, 'xiaomi', 2, 1, 1, 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `donhang`
+--
+
+CREATE TABLE `donhang` (
+  `id` int(11) NOT NULL,
+  `sanpham` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `tongtien` int(100) NOT NULL,
+  `user_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `sdt` int(13) NOT NULL,
+  `diachi` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ghichu` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `thanhtoan` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `date_order` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `donhang`
+--
+
+INSERT INTO `donhang` (`id`, `sanpham`, `tongtien`, `user_name`, `sdt`, `diachi`, `email`, `ghichu`, `thanhtoan`, `date_order`) VALUES
+(74, 'LOA BLUETOOTH EWA A104 GIÁ TỐT', 190000, 'nguyen khanh tung', 1638716085, 'ấp 4 xã tân lập bắc tân uyên bình duơng', '', '', '1', '2018-06-04 14:49:27'),
+(76, 'BÀN PHÍM CHUỘT BAY KM800 PRO CÓ MIC VOICE SEARCH (MX3 PRO VOICE)', 450000, 'nguyen khanh tung', 1638716085, 'ấp 4 xã tân lập bắc tân uyên bình duơng', '', '', '1', '2018-06-04 14:52:53'),
+(77, 'VIBOX V1 Pro Android TV Box thương hiệu Việt', 790000, 'nguyen khanh tung', 1638716085, 'ấp 4 xã tân lập bắc tân uyên bình duơng', '', '', '1', '2018-06-04 14:59:13'),
+(78, 'VIBOX V1 Pro Android TV Box thương hiệu Việt', 790000, 'nguyen khanh tung', 1638716085, 'ấp 4 xã tân lập bắc tân uyên bình duơng', '', '', '1', '2018-06-04 15:01:29'),
+(79, 'VIBOX V1 Pro Android TV Box thương hiệu Việt', 790000, 'nguyen khanh tung', 1638716085, 'ấp 4 xã tân lập bắc tân uyên bình duơng', '', '', '1', '2018-06-04 15:02:14'),
+(80, 'VIBOX V2 Pro 2018 Android TV Box thương hiệu Việt', 990000, 'nguyen khanh tung', 1638716085, 'ấp 4 xã tân lập bắc tân uyên bình duơng', '', '', '1', '2018-06-04 15:04:53');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `hotro`
+--
+
+CREATE TABLE `hotro` (
+  `id` int(11) NOT NULL,
+  `people` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `facebook` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `skyber` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `orthernum` int(10) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `hotro`
+--
+
+INSERT INTO `hotro` (`id`, `people`, `facebook`, `skyber`, `orthernum`, `status`) VALUES
+(1, 'Ms. Hạnh Nguyễn', '', '', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `imageproduct`
+--
+
+CREATE TABLE `imageproduct` (
+  `id` int(11) NOT NULL,
+  `parent_id` int(10) NOT NULL,
+  `images` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `imageproduct`
+--
+
+INSERT INTO `imageproduct` (`id`, `parent_id`, `images`) VALUES
+(1, 43, 'images/sanpham/tvbox/vibox v1 pro/1.jpg'),
+(2, 43, 'images/sanpham/tvbox/vibox v1 pro/2.jpg'),
+(3, 43, 'images/sanpham/tvbox/vibox v1 pro/3.jpg'),
+(4, 43, 'images/sanpham/tvbox/vibox v1 pro/4.jpg'),
+(5, 43, 'images/sanpham/tvbox/vibox v1 pro/5.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `lienhe`
+--
+
+CREATE TABLE `lienhe` (
+  `id` int(11) NOT NULL,
+  `hoten` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `dienthoai` int(20) NOT NULL,
+  `email` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `noidung` text COLLATE utf8_unicode_ci NOT NULL,
+  `ngaydang` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `lienhe`
+--
+
+INSERT INTO `lienhe` (`id`, `hoten`, `title`, `dienthoai`, `email`, `noidung`, `ngaydang`, `status`) VALUES
+(2, 'nguyễn khanh tùng', 'sản phẩm mibox 4k ', 1638716085, 'nguyenkhanhtung580@gmail.com', 'sản phẩm mibox 4k còn hàng ko shop', '2018-06-05 02:35:06', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `menu`
+--
+
+CREATE TABLE `menu` (
+  `id` int(11) NOT NULL,
+  `menu_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `home` int(1) NOT NULL DEFAULT '1',
+  `icon` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `date_create` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `menu`
+--
+
+INSERT INTO `menu` (`id`, `menu_name`, `home`, `icon`, `date_create`) VALUES
+(1, ' TV BOX & MINI PC', 1, 'images/tv-box-icon-menu.png', '2018-06-05 12:23:04'),
+(2, ' MICRO KARAOKE', 1, 'images/micro-karaoke-bluetooth.png', '2018-06-05 12:23:04'),
+(3, ' MICRO THU ÂM', 1, 'images/mic-thu-am.png', '2018-06-05 12:23:04'),
+(4, ' LOA - TAI NGHE', 1, 'images/loa-bluetooth-icon.png', '2018-06-05 12:23:04'),
+(5, ' PHỤ KIỆN TV BOX', 1, 'images/taycam.png', '2018-06-05 12:23:04'),
+(6, ' THIẾT BỊ MẠNG', 1, 'images/wifilan-icon.jpg', '2018-06-05 12:23:04'),
+(7, ' SẠC DỰ PHÒNG', 1, 'images/battery.png', '2018-06-05 12:23:04'),
+(8, ' AZ PHỤ KIỆN', 0, 'images/az.png', '2018-06-05 12:23:04'),
+(31, 'TV BOX & MINI PC', 1, '', '2018-06-05 12:23:04');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `menu_sub`
+--
+
+CREATE TABLE `menu_sub` (
+  `id` int(11) NOT NULL,
+  `parent_id` int(10) NOT NULL,
+  `menusub_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `menu_sub`
+--
+
+INSERT INTO `menu_sub` (`id`, `parent_id`, `menusub_name`) VALUES
+(1, 1, 'Android TV Box'),
+(2, 1, 'Android TV Stick'),
+(3, 1, 'Windows Mini PC'),
+(4, 2, 'MIKARA'),
+(5, 2, 'TOSING'),
+(6, 3, 'Sound Card'),
+(7, 3, 'Chuột Bay & Bàn Phím'),
+(8, 3, 'Tay Game Android TV BOX');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `sanpham`
+--
+
+CREATE TABLE `sanpham` (
+  `id` int(11) NOT NULL,
+  `tensp` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `slug` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `anh` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `anh_thumb` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `noidung` text COLLATE utf8_unicode_ci,
+  `motakhuyenmai` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `baohanhsp` int(1) DEFAULT NULL,
+  `link` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `gia` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `thongso` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `category_id` int(10) NOT NULL,
+  `menusub_id` int(10) NOT NULL,
+  `sale` int(20) DEFAULT NULL,
+  `video` varchar(100) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
+  `ordernumb` int(10) DEFAULT NULL,
+  `status` int(1) DEFAULT NULL,
+  `view` int(10) DEFAULT '0',
+  `hot` tinyint(4) DEFAULT '0',
+  `create_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `sanpham`
+--
+
+INSERT INTO `sanpham` (`id`, `tensp`, `slug`, `anh`, `anh_thumb`, `noidung`, `motakhuyenmai`, `baohanhsp`, `link`, `gia`, `thongso`, `category_id`, `menusub_id`, `sale`, `video`, `ordernumb`, `status`, `view`, `hot`, `create_at`, `update_at`) VALUES
+(43, 'VIBOX V1 Pro Android TV Box thương hiệu Việt', 'VIBOX V1 Pro Android TV Box thương hiệu Việt', 'images/sanpham/tvbox/vibox v1 pro/1.jpg', 'images/sanpham/tvbox/vibox v1 pro/0.jpg', 'Tiếp nối thành công của Android TV Box VIBOX V1 Mini, với tiêu chí hướng tới người dùng, nâng cao hơn về chất lượng sản phẩm, VIBOX V1 Pro ra đời khẳng định sự thành công của hãng khi chất lượng ngày càng nâng cao, đáp ứng nhiều nhu cầu giải trí khác nhau.', 'Tặng cáp AV, chuột không dây trị giá 150.000đ', 1, NULL, '790000', 'RAM: 1GB DDR3', 1, 1, 990000, '', NULL, 1, 0, 1, '2018-05-19 07:42:32', '2018-06-06 09:49:15'),
+(44, 'VIBOX V2 Pro 2018 Android TV Box thương hiệu Việt', 'VIBOX V2 Pro 2018 Android TV Box thương hiệu Việt', 'images/sanpham/tvbox/vibox 2 pro/0.jpg', NULL, 'Hộp truyền hình thông minh VIBOX V2 Pro 2018 được trang bị phần cứng chất lượng tốt, firmware được phát triển và tối ưu bởi các kỹ sư Việt Nam, đảm bảo sản phẩm hoạt động ổn định, nhanh mượt. Đặc biệt hơn nữa với chính sách bảo hành 13 tháng, đổi mới nếu lỗi phần cứng, phần mềm bảo hành trọn đời, VIBOX V2 Pro 2018 tự tin sẽ giúp người dùng hoàn toàn yên tâm khi lựa chọn và thoải mái dễ dàng khi sử dụng.', 'Giảm 5% cho Khách Hàng cũ của HieuHien.vn', 1, NULL, '990000', 'Hệ điều hành: Android 4.4 KitKat', 1, 1, 1290000, '', NULL, 0, 0, 1, '2018-05-19 07:42:32', '2018-06-06 09:48:55'),
+(45, 'Egreat A5 Android TV Box 4K HD Player', 'Egreat A5 Android TV Box 4K HD Player', 'images/sanpham/tvbox/egreat a5/0.jpg', NULL, 'Cùng với sự thành công của \"anh cả\" Egreat A10 đã làm nóng lại thị trường HD Player hiện nay thì Egreat A5 cũng nhận được rất nhiều sự quan tâm từ người dùng. Thay đổi thiết kế mainboard, thân máy, vỏ máy, lược bỏ đi một số chi tiết như khay đựng ổ cứng HDD, quạt tản nhiệt, cổng RS232...giúp cho giá thành của Egreat A5 giảm xuống, phù hợp với túi tiền của nhiều người dùng hơn nên số lượng Egreat A5 bán ra hàng tháng luôn nhiều hơn so với Egreat A10.', 'Tặng tài khoản VIP xem phim HD online chất lượng cao', 1, NULL, '2590000', 'RAM 2GB 1866MHz DDR3', 1, 1, 3500000, '', NULL, 1, 0, 0, '2018-05-19 07:49:27', '2018-05-21 02:17:30'),
+(46, 'Egreat A10 Android TV Box 4K 3D ATMOS DTS', 'Egreat A10 Android TV Box 4K 3D ATMOS DTS', 'images/sanpham/tvbox/egreat a10/0.jpg', NULL, 'Egreat A10 là sản phẩm của Egreat, một công ty chuyên sản xuất các thiết bị nghe nhìn gia đình như đầu phát HD, đầu thu TV kỹ thuật số. Egreat A10 là sự kết hợp hoàn hảo giữa đầu phát HD và Android TV Box tập trung vào các tính năng giải trí online, đồng thời đáp ứng tốt việc giải trí offline. Sản phẩm này tỏ ra nổi trội so với các đầu phát Android khác nhờ khả năng chơi phim Blu-ray có menu, hỗ trợ phim 3D, 4K HDR.', 'Tặng chuột bay bàn phím KM800 trị giá 250.000đ (nếu không lấy quà tặng này, quý khách được giảm 190.000đ trong hóa đơn)', 1, NULL, '5490000', '', 1, 1, 6000000, '', NULL, 1, 0, 0, '2018-05-19 07:49:27', '2018-05-21 02:17:34'),
+(47, 'MIKARA S10 PLUS (BẠC) - MICRO HÁT KARAOKE KÈM LOA BLUETOOTH CAO CẤP', 'MIKARA S10 PLUS (BẠC) - MICRO HÁT KARAOKE KÈM LOA BLUETOOTH CAO CẤP', 'images/sanpham/micro/micro s10/0.jpg', NULL, 'Micro Karaoke Mikara S10 Plus là một chiếc micro kèm loa có thiết kế hiện đại và cao cấp. Dựa trên những ưu điểm kế thừa từ người tiền nhiệm S9 Pro kết hợp với những điểm mới trong thiết kế và công nghệ âm thanh, giúp thiết bị trở nên cao cấp hơn.', '', 1, NULL, '1490000', 'Công suất loa: 3W x 2 (tích hợp 2 loa)', 2, 2, 1690000, '', NULL, 1, 0, 1, '2018-05-19 07:52:18', '2018-05-21 02:17:36'),
+(48, 'MICRO KARAOKE BLUETOOTH 3 LOA MAILIAN M2S', 'MICRO KARAOKE BLUETOOTH 3 LOA MAILIAN M2S', 'images/sanpham/micro/micro m2s/0.jpg', NULL, 'Mailian M2S là chiếc micro karaoke kèm loa bluetooth duy nhất có thiết kế đến 3 loa công suất lớn, và thêm cổng âm thanh 3.5 để cắm ra loa ngoài hát cực hay.', '', 1, NULL, '790000', ' Công suất loa: 3W x 3 (tích hợp 3 loa)', 2, 2, 1290000, '', NULL, 1, 0, 1, '2018-05-19 08:00:59', '2018-05-21 02:17:39'),
+(49, 'MICRO KÈM LOA ZBX-66, MICRO HÁT KARAOKE BLUETOOTH CỰC HAY', 'MICRO KÈM LOA ZBX-66, MICRO HÁT KARAOKE BLUETOOTH CỰC HAY', 'images/sanpham/micro/micro zbx66/0.jpg', NULL, 'Micro kèm loa ZBX-66 chính hãng hát karaoke cực hay trên điện thoại, máy tính bảng hay Android TV Box,... bạn có thể hát karaoke cùng bạn bè mọi lúc mọi nơi. Mic karaoke kèm loa ZBX-66 có kiểu dáng mới, phần loa hình quả táo độc đáo, mới lạ.\r\n\r\n \r\n\r\nVideo trải nghiệm hát karaoke trên Micro Kèm Loa ZBX-66', '', 1, NULL, '990000', 'Kết nối: Bluetooth 3.0', 2, 2, 1390000, '', NULL, 1, 0, 0, '2018-05-19 08:00:59', '2018-05-21 02:17:42'),
+(50, 'TUXUN K9 - MICRO HÁT KARAOKE TRÊN Ô TÔ, XE HƠI', 'TUXUN K9 - MICRO HÁT KARAOKE TRÊN Ô TÔ, XE HƠI', 'images/sanpham/micro/micro tuxunk9/0.jpg', NULL, 'Micro hát Karaoke trên ô tô Tuxun K9 được thiết kế theo công nghệ truyền dẫn không dây, được thiết lập sẵn các chuẩn âm thanh Stereo phòng thu vì vậy Micro Tuxun K9 rất nhạy bén với giọng nói và có âm sắc rất trong trẻo. Bạn có thể sử dụng micro hát karaoke bluetooth Tuxun K9 lên tới 6h liên tục với pin Lithium sạc.', 'Ưu đãi áp dụng dành cho Quý khách hàng mua nhiều:\r\n\r\n- Mua 2 micro Tunxun K9 được giảm thêm 5%', 1, NULL, '990000', 'Đầu ra: 10mV (tai nghe).', 2, 2, 1990000, '', NULL, 1, 0, 0, '2018-05-19 08:04:52', '2018-05-21 02:17:44'),
+(51, 'LOA XÁCH TAY HÁT KARAOKE W-KING K3 CỰC HAY', 'LOA XÁCH TAY HÁT KARAOKE W-KING K3 CỰC HAY', 'images/sanpham/loa/king k3/0.jpg', NULL, 'W-King K3 là dòng sản phẩm loa hát Karaoke chất lượng cao, được trang bị bộ vi xử lý âm thanh cao cấp, hỗ trợ xử lý Bass, Treble đầy đủ. Không giống như một số loại loa kéo khác thường chỉ có chỉnh âm lượng, echo (tiếng vang), còn khi nghe nhạc bạn sẽ không cảm thấy độ Bass, Treble của nhạc mà chỉ thấy tiếng vang to, dẫn đến cảm nhận nghe âm thanh rất dở.\r\n\r\nLoa của W-King K3 có công suất 60 sẽ cho bạn có cảm giác như đang sở hữu 1 dàn âm thanh Karaoke cao cấp, tất cả được tích hợp trong 1 thiết bị nhỏ gọn.', '', NULL, NULL, '2650000', 'Bluetooth 4.2', 4, 4, 3650000, '', NULL, 1, 0, 1, '2018-05-19 08:11:45', '2018-05-21 02:17:47'),
+(52, 'LOA BLUETOOTH JBL CHARGE 3 (LOẠI 1)', 'LOA BLUETOOTH JBL CHARGE 3 (LOẠI 1)', 'images/sanpham/loa/jbl/0.jpg', NULL, 'Loa bluetooth JBL Charge 3 giá rẻ, nghe nhạc cực hay‎, thưởng thức mê say', '', 1, NULL, '550000', '', 4, 4, 990000, '', NULL, 1, 0, 0, '2018-05-19 08:11:45', '2018-05-21 02:17:55'),
+(53, 'LOA BLUETOOTH EWA A104 GIÁ TỐT', 'LOA BLUETOOTH EWA A104 GIÁ TỐT', 'images/sanpham/loa/a104/0.jpg', NULL, 'Sản phẩm LOA BLUETOOTH EWA A104 được thiết kế nhỏ gọn với kích thước siêu nhỏ. Vỏ được làm bằng chất liệu hợp kim nhôm.', '', 1, NULL, '190000', 'Dung lượng pin: 500mA', 4, 4, 350000, '', NULL, 1, 0, 1, '2018-05-19 08:16:20', '2018-05-21 02:17:58'),
+(54, 'TAI NGHE BLUETOOTH W-KING S11', 'TAI NGHE BLUETOOTH W-KING S11', 'images/sanpham/loa/tainghe s11/0.jpg', NULL, 'W-king là thương hiệu chuyên sản xuất Loa và Tai Nghe Bluetooth chất lượng cao với thiết kế đẹp. Đặc biệt thiết kế của hãng luôn mang phong cách trẻ trung, tiện lợi, thích hợp với xu hướng của giới trẻ với sự gia công hoàn hảo đến từng chi tiết nhỏ nhất.\r\n\r\n \r\n\r\nCác mẫu tai nghe Bluetooth được ưa thích hiện nay của W-King đó là S3, S11 và S12, mỗi mẫu có 1 thiết kế khác nhau tùy theo sở thích của từng người dùng. Ở đây chúng ta sẽ cùng tìm hiểu về thiết kế của W-King S11, một trong những tai nghe thể thao của hãng.', '', 1, NULL, '390000', '', 4, 4, 590000, '', NULL, 1, 0, 1, '2018-05-19 08:16:20', '2018-05-21 02:18:01'),
+(55, 'BÀN PHÍM CHUỘT BAY KM800V CÓ MIC (MX3 VOICE)', 'BÀN PHÍM CHUỘT BAY KM800V CÓ MIC (MX3 VOICE)', 'images/sanpham/phukien/banphim km800v/0.jpg', NULL, 'Bàn phím chuột bay KM800V (MX3 voice) có cấu tạo gần giống với loại KM800 (MX3) thường, được trang bị thêm Micro bên trong để người dùng thực hiện tính năng Voice search.\r\n\r\nVideo đánh giá chi tiết chuột bay KM800 (MX3)', '', 1, NULL, '390000', 'Compatible with Windows 98/2000/ME/Vista/NT/XP/7, Android, Linux (DEBIAN-3.1, Redhat-9.0)', 5, 5, 690000, '', NULL, 1, 0, 1, '2018-05-19 08:34:03', '2018-05-21 02:18:04'),
+(56, 'BÀN PHÍM CHUỘT BAY KM800 PRO CÓ MIC VOICE SEARCH (MX3 PRO VOICE)', 'BÀN PHÍM CHUỘT BAY KM800 PRO CÓ MIC VOICE SEARCH (MX3 PRO VOICE)', 'images/sanpham/phukien/banphim km800/0.jpg', NULL, 'Bàn phím chuột bay KM800 Pro (MX3 Pro) là phiên bản nâng cấp của bàn phím chuột bay KM800 (MX3) với đèn LED nền chiếu sáng bên dưới các phím bấm giúp người dùng thao tác khi về đêm tốt hơn.\r\n\r\nChuột bay KM800 Pro (MX3 Pro) hiện nay được rất nhiều người dùng lựa chọn vì sự thuận tiện và dễ sử dụng của nó. Vừa tích hợp chuột không dây, vừa tích hợp bàn phím trong một thiết bị nhỏ gọn và bạn có thể cầm trên tay để thao tác dễ dàng.', '', 1, NULL, '450000', '', 5, 5, 990000, '', NULL, 1, 0, 0, '2018-05-19 08:38:08', '2018-05-21 02:18:07'),
+(57, 'AIR MOUSE A1M - CHUỘT BAY TÌM KIẾM BẰNG GIỌNG NÓI CHO ANDROID TV BOX', 'AIR MOUSE A1M - CHUỘT BAY TÌM KIẾM BẰNG GIỌNG NÓI CHO ANDROID TV BOX', 'images/sanpham/phukien/chuotbay a1m/0.jpg', NULL, 'Bộ đôi chuột bay không dây Air Mouse A1M  và Air Mouse A1  vừa ra mắt đầu năm 2018 đã tạo nên sự thu hút lớn từ cộng đồng người Android TV Box. Air Mouse A1M thu hút về thiết kế tối giản đẹp mắt cùng tông màu đen lịch lãm. Điểm nổi bật nhất của Air Mouse A1M là độ nhạy xuất sắc cùng tính năng tìm kiếm bằng giọng nói Voice Search đã được tích hợp trong chiếc chuột bay thế hệ mới này.', '', 1, NULL, '290000', '', 5, 5, 350000, '', NULL, 1, 0, 1, '2018-05-19 08:38:08', '2018-05-21 02:18:10'),
+(58, 'TAY GAME TRONSMART MARS G01', 'TAY GAME TRONSMART MARS G01', 'images/sanpham/phukien/taygame/0.jpg', NULL, 'Tay Game Tronsmart Mars G01 2.4GHz Wireless Gamepad Cho Android TV BOX / PS3 / Tablet PC\r\n \r\n\r\nTronsmart Mars G01 là tay game chuyên dụng chơi GAME cho Android TV Box và PC. Hiện tại Tronsmart G01 dẫn đầu thị trường tay game nhờ khả năng tương thích được với tất cả nền tảng bao gồm cả giao diện điều khiển PS3 và giả lập. Kết nối được với thiết bị chơi game dùng nền tảng Android nào như TV Box, TV Stick, Smartphone, Máy tính bảng, ...). Kết nối đơn giản chỉ cần Plug and Play trong vài giây.', '', 2, NULL, '490000', '', 5, 5, 890000, '', NULL, 1, 0, 1, '2018-05-19 08:40:05', '2018-05-21 02:18:13'),
+(59, 'TP-LINK TL-WA860RE - BỘ MỞ RỘNG SÓNG WIFI', 'TP-LINK TL-WA860RE - BỘ MỞ RỘNG SÓNG WIFI', 'images/sanpham/thietbi mang/tp link w860/0.jpg', NULL, 'TP-LINK TL-WA860RE - Bộ mở rộng sóng WiFi tốc độ 300Mbps cho dòng AC đi qua\r\n \r\n\r\nBộ mở rộng sóng WiFi TL-WA860RE của TP-LINK được thiết kế thuận tiện cho việc mở rộng phạm vi phủ sóng và tăng cường tín hiệu của mạng không dây đã có sẵn nhằm loại bỏ \"điểm chết\". Với tốc độ chuẩn N 300Mbps, nút nhấn mở rộng sóng, kích thước nhỏ gọn và thiết kế gắn tường, mở rộng mạng không dây chưa bao giờ dễ dàng đến vậy. Hơn nữa, cổng Ethernet cho phép bộ mở rộng sóng hoạt động như một bộ chuyển đổi không dây để kết nối với các thiết bị có dây.', '', 2, NULL, '635000', '', 6, 6, 890000, '', NULL, 1, 0, 1, '2018-05-19 08:44:54', '2018-05-21 02:18:15'),
+(60, 'MERCURY MW302RE - BỘ KÍCH SÓNG WIFI TỐC ĐỘ 300MBPS', 'MERCURY MW302RE - BỘ KÍCH SÓNG WIFI TỐC ĐỘ 300MBPS', 'images/sanpham/thietbi mang/mercury/0.jpg', NULL, 'Hiện tại, Hieuhien.vn cung cấp thêm dòng sản phẩm mới tốt hơn với giao diện tiếng Anh dễ cài đặt và sử dụng. Xem ngay:\r\n\r\n➥ Bộ kích sóng Wifi tốc độ 300Mbps Mercusys MW300RE', '', 2, NULL, '190000', '', 6, 6, 250000, '', NULL, 1, NULL, 0, '2018-05-19 08:44:54', '2018-05-19 08:44:54'),
+(61, 'TP-LINK M7200 - BỘ PHÁT WIFI DI ĐỘNG 4G LTE\r\n1242 lượt xem', 'TP-LINK M7200 - BỘ PHÁT WIFI DI ĐỘNG 4G LTE\r\n1242 lượt xem', 'images/sanpham/thietbi mang/tp link m7200/0.jpg', NULL, 'TP-Link M7200 - Bộ Phát WiFi Di động 4G LTE\r\nTP-Link M7200 - Bộ Phát WiFi Di động 4G LTE ✅ Chỉ cần gắn SIM và mở nguồn, bạn có thể sử dụng Wi-Fi ở bất cứ nơi đâu ✅ Với TP-Link M7200 bạn dễ dàng chia sẻ kết nối 4G/3G cùng lúc cho 10 thiết bị và có thể sử dụng 8 tiếng liên tục với dung lượng Pin lên đến 2000mAh ✅ Mua bộ phát wifi 4G TP-Link M7200 chính hãng, giá rẻ tại Hieuhien.vn ✅ Liên hệ 0918778013 ✅ Giao hàng toàn quốc.\r\nNhững tính năng nổi bật của Bộ Phát WiFi 4G TP-Link M7200\r\n- Chia sẻ kết nối Internet với bạn bè lên tới 10 thiết bị cùng lúc\r\n\r\n- Pin sạc 2000mAh cho 8 tiếng sử dụng liên tục\r\n- Hỗ trợ công nghệ 4G FDD/TDD-LTE mới nhất\r\n- Quản lý dễ dàng và đơn giản với ứng dụng tpMiFi', '', 2, NULL, '1300000', '', 6, 6, 1500000, '', NULL, 1, NULL, 1, '2018-05-19 08:49:19', '2018-05-19 08:49:19'),
+(62, 'HUAWEI E5573CS-609 - BỘ PHÁT WIFI 4G GIÁ RẺ, TỐC ĐỘ 150MBPS', 'HUAWEI E5573CS-609 - BỘ PHÁT WIFI 4G GIÁ RẺ, TỐC ĐỘ 150MBPS', 'images/sanpham/thietbi mang/huawei/0.jpg', NULL, 'Bộ phát wifi 4G Huawei E5573Cs-609 là phiên bản sản xuất dành riêng cho nhà mạng Airtel của Ấn Độ. Tuy nhiên Router WiFi 4G Huawei E5573Cs-609 không bị khóa mạng mà có thể sử dụng với hầu hết các nhà mạng trên thế giới, tự động nhận điện cấu hình 3G/4G của trên 500 nhà mạng trên thế giới.\r\nBộ phát wifi 4G giá rẻ Huawei E5573Cs-609 có tốc độ download tối đa là 150Mbps, tốc độ upload tối đa là 50Mbps.\r\nHuawei E5573Cs-609 trang bị Wifi chuẩn 802.11 b/g/n, bảo mật WPA/WPA-PSK, hỗ trợ kết nối đồng thời 10 thiết bị.\r\nRouter WiFi 4G Huawei E5573Cs-609 xài pin có thể tháo rời 1500mAh, tuy không lớn nhưng với công nghệ tiết kiệm điện năng của Huawei nên vẫn đảm bảo cho 5-6 giờ làm việc liên tục. Thời gian chờ lên đến 300 giờ. Sử dụng cổng sạc 5V-1A phổ biến hiện nay.', '', 1, NULL, '990000', '', 6, 6, 1390000, '', NULL, 1, NULL, 0, '2018-05-19 08:49:19', '2018-05-19 08:49:19'),
+(63, 'PIN SẠC DỰ PHÒNG 20.000MAH - REMAX RPL 58', 'PIN SẠC DỰ PHÒNG 20.000MAH - REMAX RPL 58', 'images/sanpham/sac du phong/remax 2000/0.jpg', NULL, 'Pin sạc dự phòng Remax RPL 58 20000mAh có thiết kế gọn đẹp, dễ dàng mang đi khi di chuyển. Dung lượng pin lớn 20000mAh giúp bạn dự trữ năng lượng bên mình mọi lúc mọi nơi. Có thể sạc được 7-10 lần cho những dòng điện thoại 2-3000mAh.', '', 2, NULL, '490000', 'Dung lượng: 20000mAh\r\nĐiện thế: 5V/1A\r\nĐầu ra: 5V/2,4A (Max)', 7, 7, 690000, '', NULL, 1, NULL, 1, '2018-05-19 08:56:46', '2018-05-19 08:56:46'),
+(64, 'PIN SẠC DỰ PHÒNG KHÔNG DÂY CHUẨN QI - 10.000 MAH', 'PIN SẠC DỰ PHÒNG KHÔNG DÂY CHUẨN QI - 10.000 MAH', 'images/sanpham/sac du phong/qi/0.jpg', NULL, 'Pin Sạc Dự Phòng  Không Dây Chuẩn QI Dung Lượng 10.000 mAh\r\n \r\n\r\nNgày nay với sự phát triển mạnh mẽ của công nghệ điện tử hiện nay việc sử dụng điện thoại hay máy tính bảng là nhu cầu cần thiết rất quan trọng đối với mỗi người. Vì vậy đi kèm với các thiết bị thông minh này thì phụ kiện đi kèm cũng xuất hiện nhiều hơn với các thương hiệu khác nhau. Một trong những sản phẩm được xem là nguồn sống không thể thiếu của điện thoại thông minh hay máy tính bảng hiện nay đó là sạc dự phòng không dây. Đây là một trong những phụ kiện hầu như là không thể thiếu với thiết kế gọn nhẹ, sạc pin nhanh hơn, tiện lợi, dễ dàng sử dụng và thuận tiện di chuyển ở bất cứ đâu.', 'Cổng vào có dây: DC 5V == 2A, cổng vào không dây: 5V == 750mA', 2, NULL, '580000', '', 7, 7, 980000, '', NULL, 1, NULL, 1, '2018-05-19 08:56:46', '2018-05-19 08:56:46'),
+(65, 'PIN SẠC DỰ PHÒNG ASPOR A386 12000MAH', 'PIN SẠC DỰ PHÒNG ASPOR A386 12000MAH', 'images/sanpham/sac du phong/a386/0.jpg', NULL, 'Pin sạc dự phòng Aspor A386\r\nPin sạc dự phòng Aspor A386 sở hữu dung lượng 12.000mAh giúp bạn có thể thoải mái sạc cho chiếc Smartphone của mình trong nhiều lần. Với Aspor A386, bạn có thể thoải mái đi ra ngoài trong nhiều giờ, nhiều ngày mà không sợ hết pin điện thoại.', '', 2, NULL, '320000', '', 7, 7, 450000, '', NULL, 1, NULL, 0, '2018-05-19 08:59:47', '2018-05-19 09:00:59'),
+(66, NULL, NULL, 'images/sanpham/sac du phong/a373/0.jpg', NULL, 'PIN SẠC DỰ PHÒNG ASPOR A373 6000MAH', '', 1, NULL, '250000', '', 7, 7, 350000, '', NULL, 1, NULL, 0, '2018-05-19 08:59:47', '2018-05-19 08:59:47'),
+(67, 'MICRO THU ÂM ISK AT100 - MIC HÁT KARAOKE, HÁT LIVE STREAM » MIC HOA VINH', 'MICRO THU ÂM ISK AT100 - MIC HÁT KARAOKE, HÁT LIVE STREAM » MIC HOA VINH', 'images/sanpham/mic thu am/at100/0.jpg', NULL, '', '', 1, NULL, '950000', '', 3, 3, 1290000, '', NULL, 1, 0, 0, '2018-06-05 02:51:18', '2018-06-05 02:55:17'),
+(68, 'MICRO THU ÂM TAKSTAR PC-K320', 'MICRO THU ÂM TAKSTAR PC-K320', 'images/sanpham/mic thu am/k320/0.jpg', NULL, 'Takstar PC-K320 - Micro Thu Âm Chuyên Nghiệp, Mic Hát Karaoke, LiveStream\r\n\r\nMicro thu âm Takstar PC-K320 là micro condenser (điện dung) hiệu suất cao, đáp ứng tần số rộng, âm thanh rõ ràng và tự nhiên. Mic thu âm Takstar PC K320 được sử dụng rộng rãi trong các bản thu âm giọng hát, bản ghi âm nhạc, thu âm cá nhân, chương trình radio và hát karaoke online, hát live stream.', '', 2, NULL, '1490000', '12-52V điện phantom', 3, 3, 1890000, '', NULL, 1, 0, 0, '2018-06-05 03:01:42', '2018-06-05 03:01:42'),
+(69, 'SOUND CARD THU ÂM V8, CARD ÂM THANH HÁT KARAOKE, LIVE STREAM', 'SOUND CARD THU ÂM V8, CARD ÂM THANH HÁT KARAOKE, LIVE STREAM', 'images/sanpham/mic thu am/sound v8/0.jpg', NULL, 'Sound Card Thu Âm V8, Card Âm Thanh Hát Karaoke, Live Stream\r\n \r\n\r\nSound card thu âm V8 là sản phẩm card âm thanh tương thích với nhiều thiết bị như điện thoại smartphone, máy tính bảng, laptop, PC. Sound card V8 hỗ trợ 12 hiệu ứng âm thanh sống động, đi kèm là rất nhiều tinh chỉnh âm thanh đầu vào, giúp công việc hát karaoke cá nhân hay thu âm của bạn trở nên dễ dàng hơn. \r\n\r\nĐặc biệt Sound card thu âm giá rẻ V8 được trang bị pin dung lượng 1000mah, có thể sử dụng 12h liên tục, thực sự là 1 nâng cấp xứng đáng so với các sản phẩm cùng loại khi hầu hết phải hạy nguồn điện trực tiếp. Giờ đây bạn có thể mang Soundcard V8 khi đi du lịch, thu âm và hát Karaoke, Livestream ở bất cứ đâu.\r\nVideo mở hộp và đánh giá Sound card thu âm giá rẻ V8 - Hát karaoke, hát live stream\r\n<iframe allow=\"autoplay; encrypted-media\" allowfullscreen=\"\" frameborder=\"0\" height=\"450\" src=\"https://www.youtube.com/embed/FD4RNt_BiIo?rel=0\" width=\"800\"></iframe>', '', 2, NULL, '950000', '', 3, 3, 1200000, '', NULL, 1, 0, 0, '2018-06-05 03:01:42', '2018-06-05 03:01:42'),
+(70, 'COMBO SOUND CARD XOX K10 VÀ MICRO ISK AT100', 'COMBO SOUND CARD XOX K10 VÀ MICRO ISK AT100', 'images/sanpham/mic thu am/xox k10/0.jpg', NULL, 'Sound Card XOX K10 là card âm thanh đa năng của XOX, cung cấp cho bạn một giải pháp đơn giản, gọn nhẹ với âm thanh chất lượng cao (24-bit), kết nối trực tiếp với máy tính qua cổng USB. Sound Card XOX K10 được thiết kế để hát karaoke online, hát live stream, thu âm giọng hát, nghe nhạc, chat skype và trò chuyện trực tuyến.\r\nVideo hướng dẫn sử dụng Sound Card XOX K10 - dùng cho micro thu âm, hát karaoke, hát Livestream\r\n<iframe allowfullscreen=\"\" frameborder=\"0\" gesture=\"media\" height=\"450\" src=\"https://www.youtube.com/embed/epPmxK82IXk?rel=0\" style=\"margin: 0px; padding: 0px;\" width=\"800\"></iframe>', '', 2, NULL, '1650000', '', 3, 3, 1890000, '', NULL, 1, 0, 0, '2018-06-05 03:04:28', '2018-06-05 03:04:28');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `thongtincty`
+--
+
+CREATE TABLE `thongtincty` (
+  `id` int(11) NOT NULL,
+  `tencty` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `diachi` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `dienthoai` int(20) NOT NULL,
+  `email` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `hoten` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `dienthoai` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(1) NOT NULL,
+  `level` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `password`, `hoten`, `dienthoai`, `email`, `status`, `level`) VALUES
+(1, 'cuong', '123456', 'Cường', '01638716085', 'cuong@gmail.com', 1, 1),
+(4, 'tan', '123456', 'Tân', '01238860500', 'tan@gmail.com', 1, 1),
+(5, 'huy', '123456', 'huy', '01639485317', 'duy@gmail.com', 1, 1),
+(6, 'test', '123456', 'ahihi', '01883088812', 'ahihi@gmail.com', 1, 1),
+(7, 'khanh', '123456', 'Khánh', '0123456789', 'khanh@gmail.com', 1, 1);
+
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `video`
+--
+
+CREATE TABLE `video` (
+  `id` int(11) NOT NULL,
+  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `link` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `orthernum` int(10) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `video`
+--
+
+INSERT INTO `video` (`id`, `title`, `link`, `orthernum`, `status`) VALUES
+(1, 'mibox 4k vinh vật vờ 2019', 'https://www.youtube.com/watch?v=IkBeINhkc70', 11, 0),
+(2, 'Vật Vờ| Đánh giá FPT Play Box 2018', 'https://www.youtube.com/watch?v=BgNUaSOPwp4', 3, 1),
+(3, 'Schannel - Mở hộp và đánh giá Clip TV Box', 'https://www.youtube.com/watch?v=9HtlrPMkwDE', 3, 1),
+(4, 'khanh tùng', 'fb.com/khanhtungmtp', 10, 1);
+
+--
+-- Chỉ mục cho các bảng đã đổ
+--
+
+--
+-- Chỉ mục cho bảng `anhslide`
+--
+ALTER TABLE `anhslide`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `baiviet`
+--
+ALTER TABLE `baiviet`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `chitietdonhang`
+--
+ALTER TABLE `chitietdonhang`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `danhmucbaiviet`
+--
+ALTER TABLE `danhmucbaiviet`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `donhang`
+--
+ALTER TABLE `donhang`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `hotro`
+--
+ALTER TABLE `hotro`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `imageproduct`
+--
+ALTER TABLE `imageproduct`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `lienhe`
+--
+ALTER TABLE `lienhe`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `menu_sub`
+--
+ALTER TABLE `menu_sub`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `sanpham`
+--
+ALTER TABLE `sanpham`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `thongtincty`
+--
+ALTER TABLE `thongtincty`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `video`
+--
+ALTER TABLE `video`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `anhslide`
+--
+ALTER TABLE `anhslide`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
+-- AUTO_INCREMENT cho bảng `baiviet`
+--
+ALTER TABLE `baiviet`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
+-- AUTO_INCREMENT cho bảng `chitietdonhang`
+--
+ALTER TABLE `chitietdonhang`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `danhmucbaiviet`
+--
+ALTER TABLE `danhmucbaiviet`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT cho bảng `donhang`
+--
+ALTER TABLE `donhang`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+
+--
+-- AUTO_INCREMENT cho bảng `hotro`
+--
+ALTER TABLE `hotro`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT cho bảng `imageproduct`
+--
+ALTER TABLE `imageproduct`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT cho bảng `lienhe`
+--
+ALTER TABLE `lienhe`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT cho bảng `menu_sub`
+--
+ALTER TABLE `menu_sub`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT cho bảng `sanpham`
+--
+ALTER TABLE `sanpham`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+
+--
+-- AUTO_INCREMENT cho bảng `thongtincty`
+--
+ALTER TABLE `thongtincty`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT cho bảng `video`
+--
+ALTER TABLE `video`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

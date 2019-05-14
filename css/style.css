@@ -1,0 +1,255 @@
+﻿
+ul *
+{
+    list-style:none;
+}
+.title6
+{
+    padding: 4px 8px;
+    border-left: 5px solid #ffbb00;
+    border-bottom: 1px solid transparent;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.modal {
+    height: 670px;
+    position: fixed;
+    top: 10%;
+    right: 0;
+    bottom: 0;
+    left: 20%;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+    background: gainsboro;
+    width: 50%;
+}
+.img-fluid {
+    width: 100%;
+}
+.img2
+{
+    width: 118px;
+    margin-left: 76px;
+}
+.tongsp {
+    margin-right: 171px;
+    color: red;
+}
+.nopadding
+{
+    padding:0;
+}
+.benphai
+{
+    border: 1px solid #eedfdf;
+}
+.osp
+{
+    padding: 0px 3px;
+    border: 1px solid #f5e4e4;
+    width: 217px;
+    margin-right: 8px;
+    margin-top: 8px;
+}
+.giacu
+{
+    text-decoration: line-through;float: right;color: black
+}
+.skype {
+    float: left;
+    padding: 13px 19px; 
+}
+
+.img_thumb
+{
+    float: left;
+    width: 85px;
+}
+.title3
+{
+    margin-top: 5px;
+    float: left;
+}
+hr {
+    margin: 2px;
+    border: 0;
+    border-top: 1px solid #d8bcbc;
+}
+#slider
+{
+    margin-top: 12px;
+    width: 278px;
+    height: 266px;
+    overflow: hidden;
+    float: left;
+}
+#slider ul
+{
+    width: 248px;
+    height: 253px;
+    overflow: hidden;
+    list-style: none;
+    padding-left: 0;
+}
+#slider ul li
+{
+    float: left;
+    width: 248px;
+    height: 253px;
+    text-align: center;
+}
+.row.small-gutter {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+    .row.small-gutter .col {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+/*#endregion */
+
+/*#region header */
+.top-header {
+    background-color: #64A3A4;
+   
+    text-align: center;
+}
+
+
+        .top-header a {
+            list-style: none;
+            color: yellow;
+            font-size: 15px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+            
+header {
+    
+}
+
+    header .logo {
+        display: block;
+    }
+
+    header .search {
+        
+    }
+
+        header .search .btn-group {
+            background-color: #DD6464;
+        }
+
+        header .search .fa {
+            color: #fff;
+        }
+
+        header .search .input-group {
+            margin-top: 15px;
+            padding-left: 100px;
+        }
+
+    header .account {
+        margin-top: 15px;
+        height: 40px;
+        line-height: 40px;
+        padding-left: 10px;
+    }
+
+        header .account a {
+            color: #000;
+            font-size: 1rem;
+            text-decoration: none;
+        }
+
+        header .account .fa {
+            font-size: 50PX;
+            float: left;
+            margin-right: 10px;
+            height: 40px;
+            display: flex;
+            color: #DD6464;
+            align-items: center;
+            justify-content: center;
+        }
+/*#endregion */
+
+/*#region nav */
+nav#main-menu {
+    background-color: #DD6464 !important;
+    padding: 0 1rem;
+}
+
+    nav#main-menu.navbar-togeler {
+        margin: 5px 0 !important;
+    }
+
+    nav#main-menu ul {
+        font-size: 15px;
+        font-weight: bold;
+        width: 100%
+
+    }
+
+     nav#main-menu #navbarSupportedContent > ul > li:first-child
+    {
+       padding:0;
+    }
+    nav#main-menu #navbarSupportedContent > ul > li
+    {
+        list-style: none;
+        line-height: 35px;
+        padding: 0 11px;
+        position: relative;
+    }
+
+    nav#main-menu #navbarSupportedContent > ul > li:hover .sub-menu-top
+    {
+        display: block;
+        top: 100%;
+        opacity: 1;
+    }
+
+        nav#main-menu ul li.active,
+        nav#main-menu ul li:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        nav#main-menu ul li a {
+            margin: 0 10px 0 5px;
+                font-size: 14px;
+            color: #fff;
+        }
+
+            nav#main-menu ul li a.dropdown-item {
+                color: #000;
+            }
+
+            nav#main-menu ul li a .fa {
+                font-size: 20px;
+                color: #fff;
+            }
+
+@media(max-with: 991px) {
+    nav#main-menu ul li {
+        padding-left: 15px;
+    }
+}
+/*#endregion */
+
+
+.sub-menu-top{
+  background-color: #dd6464;
+    position: absolute;
+    z-index: 9999;
+    top: 90%;
+    opacity: 0;
+    transition: all .6s;
+    left: 0;
+    color: black;
+}
+
